@@ -1,0 +1,42 @@
+body {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+    color: #1f2937;
+    background: #f3f4f6;
+}
+
+h1 {
+    color: #0f172a;
+}
+
+form, li {
+    background: white;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin: 12px 0;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+    margin-top: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    background: #1d4ed8;
+    cursor: pointer;
+}

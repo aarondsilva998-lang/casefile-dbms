@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Witnesses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Witnesses for {{ case[1] }}</h2>
+
+    <form method="post">
+        <label>
+            Full name
+            <input name="full_name" required>
+        </label>
+        <label>
+            Statement
+            <textarea name="statement"></textarea>
+        </label>
+        <button type="submit">Save witness</button>
+    </form>
+
+    <h2>Witnesses</h2>
+    <ul>
+        {% for witness in witnesses %}
+            <li>
+                {{ witness[1] }}
+                {% if witness[2] %} — {{ witness[2] }}{% endif %}
+                <br>
+                <a href="/witnesses/{{ witness[0] }}/edit">Edit</a>
+
+                <form method="post"
+                      action="/witnesses/{{ witness[0] }}/delete"
+                      onsubmit="return confirm('Delete this witness?');">
+                    <button type="submit">Delete witness</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No witnesses recorded for this case</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

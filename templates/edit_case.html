@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Edit Case</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Edit Case #{{ case[0] }}</h2>
+
+    <form method="post">
+        <label>
+            Case title
+            <input name="title" value="{{ case[1] }}" required>
+        </label>
+
+        <label>
+            Description
+            <textarea name="description">{{ case[2] or "" }}</textarea>
+        </label>
+
+        <label>
+            Status
+            <select name="status">
+                <option value="Open" {% if case[3] == "Open" %}selected{% endif %}>Open</option>
+                <option value="In Progress" {% if case[3] == "In Progress" %}selected{% endif %}>In Progress</option>
+                <option value="Closed" {% if case[3] == "Closed" %}selected{% endif %}>Closed</option>
+            </select>
+        </label>
+
+        <label>
+            Investigator
+            <select name="investigator_id">
+                <option value="">Unassigned</option>
+                {% for investigator in investigators %}
+                    <option value="{{ investigator[0] }}"
+                        {% if investigator[0] == case[4] %}selected{% endif %}>
+                        {{ investigator[1] }}
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>

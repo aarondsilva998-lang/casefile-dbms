@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p>Digital Investigation Management System</p>
+    <p><a href="/investigators">Manage Investigators</a></p>
+    <p><a href="/search">Search Cases</a></p>
+    <p><a href="/dashboard">Investigation Dashboard</a></p>
+
+    <h2>Add a Case</h2>
+    <form method="post">
+        <label>
+            Case title
+            <input name="title" required>
+        </label>
+        <label>
+            Description
+            <textarea name="description"></textarea>
+
+        </label>
+        <label>
+            Assign investigator
+            <select name="investigator_id">
+                <option value="">Unassigned</option>
+                {% for investigator in investigators %}
+                    <option value="{{ investigator[0] }}">{{ investigator[1] }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Save case</button>
+    </form>
+
+    <h2>Cases</h2>
+    <ul>
+        {% for case in cases %}
+            <li>
+                #{{ case[0] }}: {{ case[1] }} — {{ case[2] }}
+                {% if case[3] %} — Investigator: {{ case[3] }}{% endif %}
+                <br>
+                <a href="/cases/{{ case[0] }}/edit">Edit</a> |
+                <a href="/cases/{{ case[0] }}/suspects">Manage suspects</a> |
+                <a href="/cases/{{ case[0] }}/evidence">Manage evidence</a> |
+                <a href="/cases/{{ case[0] }}/witnesses">Manage witnesses</a> |
+                <a href="/cases/{{ case[0] }}/activity">Activity timeline</a>
+
+                <form method="post"
+                      action="/cases/{{ case[0] }}/delete"
+                      onsubmit="return confirm('Delete this case and its related records?');">
+                    <button type="submit">Delete case</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No cases yet</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

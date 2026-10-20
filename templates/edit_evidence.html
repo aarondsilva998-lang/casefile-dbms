@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Edit Evidence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/cases/{{ evidence[1] }}/evidence">Back to Evidence</a></p>
+
+    <h2>Edit Evidence</h2>
+
+    <form method="post">
+        <label>
+            Evidence description
+            <input name="description" value="{{ evidence[2] }}" required>
+        </label>
+        <label>
+            Date collected
+            <input name="collected_at" type="date" value="{{ evidence[3] or '' }}">
+        </label>
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Activity Timeline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Activity Timeline — {{ case[1] }}</h2>
+
+    <form method="post">
+        <label>
+            Activity update
+            <textarea name="activity" required></textarea>
+        </label>
+        <button type="submit">Add to timeline</button>
+    </form>
+
+    <h2>Timeline</h2>
+    <ul>
+        {% for item in activities %}
+            <li>{{ item[2] }} — {{ item[1] }}</li>
+        {% else %}
+            <li>No activity recorded for this case</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

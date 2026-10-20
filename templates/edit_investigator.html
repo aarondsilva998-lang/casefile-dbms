@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Edit Investigator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/investigators">Back to Investigators</a></p>
+
+    <h2>Edit Investigator</h2>
+
+    <form method="post">
+        <label>
+            Full name
+            <input name="full_name" value="{{ investigator[1] }}" required>
+        </label>
+        <label>
+            Email
+            <input name="email" type="email" value="{{ investigator[2] or '' }}">
+        </label>
+        <label>
+            Role
+            <input name="role" value="{{ investigator[3] or '' }}">
+        </label>
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>

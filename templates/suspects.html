@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Suspects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Suspects for {{ case[1] }}</h2>
+
+    <form method="post">
+        <label>
+            Full name
+            <input name="full_name" required>
+        </label>
+        <label>
+            Notes
+            <textarea name="notes"></textarea>
+        </label>
+        <button type="submit">Save suspect</button>
+    </form>
+
+    <h2>Suspects</h2>
+    <ul>
+        {% for suspect in suspects %}
+            <li>
+                {{ suspect[1] }}
+                {% if suspect[2] %} — {{ suspect[2] }}{% endif %}
+                <br>
+                <a href="/suspects/{{ suspect[0] }}/edit">Edit</a>
+
+                <form method="post"
+                      action="/suspects/{{ suspect[0] }}/delete"
+                      onsubmit="return confirm('Delete this suspect?');">
+                    <button type="submit">Delete suspect</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No suspects recorded for this case</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

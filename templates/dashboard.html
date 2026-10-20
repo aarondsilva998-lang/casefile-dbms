@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .metric {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 2rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Investigation Dashboard</h2>
+
+    <section class="dashboard">
+        <div class="metric">All cases<strong>{{ counts.cases }}</strong></div>
+        <div class="metric">Open cases<strong>{{ counts.open_cases }}</strong></div>
+        <div class="metric">Investigators<strong>{{ counts.investigators }}</strong></div>
+        <div class="metric">Suspects<strong>{{ counts.suspects }}</strong></div>
+        <div class="metric">Evidence records<strong>{{ counts.evidence }}</strong></div>
+        <div class="metric">Witnesses<strong>{{ counts.witnesses }}</strong></div>
+    </section>
+</body>
+</html>

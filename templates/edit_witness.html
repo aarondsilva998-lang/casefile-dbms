@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Edit Witness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/cases/{{ witness[1] }}/witnesses">Back to Witnesses</a></p>
+
+    <h2>Edit Witness</h2>
+
+    <form method="post">
+        <label>
+            Full name
+            <input name="full_name" value="{{ witness[2] }}" required>
+        </label>
+        <label>
+            Statement
+            <textarea name="statement">{{ witness[3] or "" }}</textarea>
+        </label>
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Search Cases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Search Cases</h2>
+    <form method="get" action="/search">
+        <label>
+            Search by case title, description, status, or investigator
+            <input name="q" value="{{ query }}">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        <h2>Results for “{{ query }}”</h2>
+        <ul>
+            {% for case in results %}
+                <li>
+                    #{{ case[0] }}: {{ case[1] }} — {{ case[2] }}
+                    {% if case[3] %} — Investigator: {{ case[3] }}{% endif %}
+                </li>
+            {% else %}
+                <li>No matching cases found</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

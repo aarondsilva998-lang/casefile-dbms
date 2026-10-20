@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Evidence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/">Back to Cases</a></p>
+
+    <h2>Evidence for {{ case[1] }}</h2>
+
+    <form method="post">
+        <label>
+            Evidence description
+            <input name="description" required>
+        </label>
+        <label>
+            Date collected
+            <input name="collected_at" type="date">
+        </label>
+        <button type="submit">Save evidence</button>
+    </form>
+
+    <h2>Evidence</h2>
+    <ul>
+        {% for item in evidence_list %}
+            <li>
+                {{ item[1] }}
+                {% if item[2] %} — Collected: {{ item[2] }}{% endif %}
+                <br>
+                <a href="/evidence/{{ item[0] }}/edit">Edit</a>
+
+                <form method="post"
+                      action="/evidence/{{ item[0] }}/delete"
+                      onsubmit="return confirm('Delete this evidence record?');">
+                    <button type="submit">Delete evidence</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No evidence recorded for this case</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

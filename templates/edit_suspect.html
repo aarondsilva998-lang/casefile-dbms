@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CASEFILE — Edit Suspect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CASEFILE</h1>
+    <p><a href="/cases/{{ suspect[1] }}/suspects">Back to Suspects</a></p>
+
+    <h2>Edit Suspect</h2>
+
+    <form method="post">
+        <label>
+            Full name
+            <input name="full_name" value="{{ suspect[2] }}" required>
+        </label>
+        <label>
+            Notes
+            <textarea name="notes">{{ suspect[3] or "" }}</textarea>
+        </label>
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>
